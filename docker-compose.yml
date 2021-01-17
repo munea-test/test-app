@@ -6,14 +6,14 @@ services:
     expose:
       - "80"
   nginx:
-    image: nginx
+    image: nginx:latest
     volumes:
       - ./nginx.conf:/etc/nginx:ro
     depends_on:
       - webapp
     ports:
       - "80:80"
-networks:
-  default:
-    driver: bridge
-    name: webapp
+# networks:
+#   default:
+#     driver: bridge
+#     name: webapp
