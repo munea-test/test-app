@@ -30,7 +30,6 @@ pipeline {
         }
         stage('Run container') {
             steps{
-                sh "sudo chmod 777 ./nginx.conf"
                 sh "docker-compose up"
             }
         }
