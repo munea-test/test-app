@@ -4,7 +4,7 @@ services:
     image: ${registry}:${git_commit_id}
     hostname: nginxApp
     expose:
-      - "80"
+      - "5000"
   nginx:
     image: nginx:latest
     volumes:
