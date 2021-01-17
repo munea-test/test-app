@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Run container') {
             steps{
-                sh "docker-compose up -d --scale webapp=2"
+                sh "docker-compose up -d"
             }
         }
     }
