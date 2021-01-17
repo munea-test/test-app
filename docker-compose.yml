@@ -13,7 +13,7 @@ services:
       - webapp
     ports:
       - "80:80"
-# networks:
-#   default:
-#     driver: bridge
-#     name: webapp
+networks:
+  default:
+    driver: bridge
+    name: webapp
