@@ -3,12 +3,12 @@ services:
   webapp:
     image: ${registry}:${git_commit_id}
     hostname: nginxApp
-    volumes:
-      - ./nginx.conf:/etc/nginx:ro
     expose:
       - "80"
   nginx:
     image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx
     depends_on:
       - webapp
     ports:
