@@ -1,19 +1,18 @@
 version: '3.5'
 services:
+  webapp:
+    image: ${registry}:${git_commit_id}
+    hostname: nginxApp
+    expose:
+      - "80"
   nginx:
-    image: nginx:latest
+    image: nginx
     volumes:
       - ./nginx.conf:/etc/nginx:ro
     depends_on:
       - webapp
     ports:
       - "80:80"
-  webapp:
-    image: ${registry}:${git_commit_id}
-    hostname: nginxApp
-    expose:
-      - "80"
-
 networks:
   default:
     driver: bridge
