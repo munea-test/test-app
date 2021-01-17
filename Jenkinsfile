@@ -1,7 +1,6 @@
 pipeline {
-    agent {
-        any
-    }
+    agent any
+    
     environment {
         git_commit_id = "${GIT_COMMIT}"
     }
