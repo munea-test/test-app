@@ -30,6 +30,8 @@ pipeline {
         }
         stage('Run container') {
             steps{
+                sh "sudo chmod 777 ./nginx.conf && sudo chown Jenkins:Jenkins ./nginx.conf"
+                sh "ls -la"
                 sh "docker-compose up"
             }
         }
