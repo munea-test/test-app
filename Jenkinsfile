@@ -3,23 +3,29 @@ pipeline {
     
     environment {
         git_commit_id = "${GIT_COMMIT}"
-        hub_token = "${docker_token}"
+        hub_token = "${dockerhub_creds}"
+        registry = "13352/nginx_app"
     }
     stages {
         stage('Create app image') {
             steps {
                 script {
-                    AppImage = docker.build("13352/nginx_app$git_commit_id")  
+                    AppImage = docker.build("$registry:$git_commit_id")  
                 }
             }
         }
         stage('Push to HUB') {
             steps {
                 script {
-                    docker.withRegistry("https://registry.hub.docker.com", "$docker_token") {
+                    docker.withRegistry("https://registry.hub.docker.com", "$hub_token") {
                     AppImage.push("$git_commit_id")
                     }
                 }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $registry:$git_commit_id"
             }
         }
         // post {
