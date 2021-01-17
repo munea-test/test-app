@@ -7,8 +7,8 @@ services:
       - "80"
   nginx:
     image: nginx:latest
-    # volumes:
-    #   - ./nginx.conf:/etc/nginx:ro
+    volumes:
+      - ./ :/etc/nginx:ro
     depends_on:
       - webapp
     ports:
