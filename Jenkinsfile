@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Run container') {
             steps{
-                sh "docker run -d -p 80:80 $registry:$git_commit_id"
+                sh "docker-compose up --scale webapp=2"
             }
         }
     }
