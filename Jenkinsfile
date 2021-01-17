@@ -28,10 +28,10 @@ pipeline {
                 sh "docker rmi $registry:$git_commit_id"
             }
         }
-        // post {
-        //     always {
-        //         cleanWs()
-        //     }
-        // }
+        stage('Run container') {
+            steps{
+                sh "docker run -d -p 80:80 $registry:$git_commit_id"
+            }
+        }
     }
 }
