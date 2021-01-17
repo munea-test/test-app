@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         git_commit_id = "${GIT_COMMIT}"
-        hub_token = "${dockerhub_creds}"
+        hub_token = 'dockerhub_creds'
         registry = "13352/nginx_app"
     }
     stages {
@@ -17,7 +17,7 @@ pipeline {
         stage('Push to HUB') {
             steps {
                 script {
-                    docker.withRegistry("https://registry.hub.docker.com", "$hub_token") {
+                    docker.withRegistry("https://registry.hub.docker.com", hub_token) {
                     AppImage.push("$git_commit_id")
                     }
                 }
